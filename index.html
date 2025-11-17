@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Private Diary (Local, Encrypted)</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header>
+			<div class="brand">
+				<h1>My Diary</h1>
+				<div class="subtitle">Private & Local</div>
+			</div>
+			<div class="actions">
+				<select id="themeSelect" title="Theme">
+					<option value="default">Theme</option>
+					<option value="theme-mint">Mint</option>
+					<option value="theme-purple">Lavender</option>
+					<option value="theme-sunset">Sunset</option>
+					<option value="theme-forest">Forest</option>
+				</select>
+				<button id="btnExport" class="secondary">Export</button>
+				<button id="btnImport" class="secondary">Import</button>
+				<div id="profileBtn" class="profile-btn" title="Click to set name">ME</div>
+				<button id="btnLock" class="secondary">Lock</button>
+			</div>
+		</header>
+
+		<div class="hero-bg">
+			<div class="hero-inner">
+				<div class="hero-title">Welcome back</div>
+				<div class="hero-sub">Your memories, stored only on this device</div>
+			</div>
+		</div>
+
+		<main>
+			<aside class="sidebar">
+				<div class="sidebar-top">
+					<label for="datePicker">Select date</label>
+					<input id="datePicker" type="date" />
+					<input id="searchInput" type="search" placeholder="Search entries" aria-label="Search entries" />
+				</div>
+				<div class="list" id="entriesList" aria-label="Entries list"></div>
+			</aside>
+
+			<section class="editor">
+				<div class="editor-head">
+					<input id="titleInput" placeholder="Title (optional)" />
+					<div class="editor-controls">
+						<button id="btnSave">Save</button>
+						<button id="btnDelete">Delete</button>
+					</div>
+				</div>
+				<textarea id="content" placeholder="Write your diary entry here..."></textarea>
+			</section>
+		</main>
+
+		<!-- Hidden file input for import -->
+		<input id="fileImport" type="file" accept="application/json" style="display:none" />
+
+		<button id="btnNewEntry" class="fab" title="New entry">+</button>
+
+		<!-- Overlay for lock / unlock (PIN-style) -->
+		<div id="overlay" class="overlay">
+			<div class="modal">
+				<div style="display:flex;align-items:center;gap:12px">
+					<div id="overlayAvatar" style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#fff,#eef2ff);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px">ME</div>
+					<div>
+						<h2 id="overlayTitle">Security</h2>
+						<div id="overlayDesc">Enter your passphrase to unlock</div>
+					</div>
+				</div>
+				<input id="passwordInput" type="password" placeholder="Passphrase or PIN" style="font-size:1.05rem;padding:12px;margin-top:12px" />
+				<div class="modal-actions">
+					<button id="btnUnlock">Unlock</button>
+					<button id="btnCreate">Create New</button>
+				</div>
+				<p class="small">Your data never leaves this device. The password is not stored.</p>
+				<p id="overlayError" class="error"></p>
+			</div>
+		</div>
+
+		<script src="app.js"></script>
+	</body>
+</html>
